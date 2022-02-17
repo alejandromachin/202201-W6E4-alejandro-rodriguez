@@ -9,3 +9,5 @@ const port = process.env.SERVER_PORT || 3001;
   await initializeServer(port);
   debug("Estamos activos");
 })();
+
+module.exports = port;
