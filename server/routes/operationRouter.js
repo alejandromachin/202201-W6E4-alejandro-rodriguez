@@ -3,7 +3,12 @@ const debug = require("debug")("calculator:root");
 
 const express = require("express");
 
-const { suma, resta, multiplicacion } = require("../../utils/operators");
+const {
+  suma,
+  resta,
+  multiplicacion,
+  division,
+} = require("../../utils/operators");
 
 const router = express.Router();
 
@@ -35,6 +40,16 @@ router.get("/multiplicacion", (req, res) => {
 
   const resultadoMultiplicacion = multiplicacion(a, b);
   res.json({ multiplicacion: resultadoMultiplicacion });
+});
+
+router.get("/division", (req, res) => {
+  debug(`Resquest arrived at ${req.url} with method ${req.method}`);
+
+  const { a } = req.query;
+  const { b } = req.query;
+
+  const resultadoDivision = division(a, b);
+  res.json({ division: resultadoDivision });
 });
 
 module.exports = { router };
