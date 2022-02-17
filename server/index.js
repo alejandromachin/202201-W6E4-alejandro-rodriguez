@@ -2,9 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const debug = require("debug")("calculator:root");
 const morgan = require("morgan");
-const operationRouter = require("./routes/operationRouter");
+const { router } = require("./routes/operationRouter");
 
 const app = express();
+
 app.use(morgan("dev"));
 
 const initializeServer = (port) =>
@@ -22,6 +23,6 @@ const initializeServer = (port) =>
     });
   });
 
-app.use("/calculator", operationRouter);
+app.use("/calculator", router);
 
 module.exports = initializeServer;
